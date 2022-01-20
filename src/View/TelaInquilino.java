@@ -66,6 +66,7 @@ public class TelaInquilino extends javax.swing.JFrame {
         jTableInquilino = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanelBase.setBorder(javax.swing.BorderFactory.createTitledBorder("Criação / Edição de Inquilinos"));
 
@@ -103,6 +104,11 @@ public class TelaInquilino extends javax.swing.JFrame {
 
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/home.png"))); // NOI18N
         jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
 
         jLabelCodInquilino.setText("Cod Inquilino");
 
@@ -339,6 +345,20 @@ public class TelaInquilino extends javax.swing.JFrame {
         jButtonExcluir.setEnabled(true);
         HabilitarJTextField();
     }//GEN-LAST:event_jTableInquilinoMouseClicked
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+
+        try {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.setVisible(true);
+        } catch (Exception e) {
+             e.printStackTrace();
+        } 
+        finally{
+        dispose();
+        }          
+        
+    }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void LimparjTextField(){
         jTextFieldCodInquilino.setText("");

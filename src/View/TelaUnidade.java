@@ -55,6 +55,7 @@ public class TelaUnidade extends javax.swing.JFrame {
         jTableUnidade = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanelBase.setBorder(javax.swing.BorderFactory.createTitledBorder("Criação / Edição de Unidades"));
 
@@ -92,6 +93,11 @@ public class TelaUnidade extends javax.swing.JFrame {
 
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/home.png"))); // NOI18N
         jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
 
         jLabelCodUnidade.setText("Cod Unidade");
 
@@ -276,6 +282,19 @@ public class TelaUnidade extends javax.swing.JFrame {
         DesabilitarJTextField();
         DesabilitarJbuttom();                
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+
+        try {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.setVisible(true);
+        } catch (Exception e) {
+             e.printStackTrace();
+        } 
+        finally{
+        dispose();
+        }          
+    }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void LimparjTextField(){
         jTextFieldCodUnidade.setText("");

@@ -46,7 +46,7 @@ public class DaoDespesa {
         } catch (SQLException erro) {
             
             JOptionPane.showMessageDialog(null,"Erro ao inserir "
-                    + "Despesa no banco de dados"+erro,
+                    + "Despesa no banco de dados",
                     "Erro",JOptionPane.ERROR_MESSAGE);            
         }     
         finally{
@@ -147,4 +147,73 @@ public class DaoDespesa {
         return despesas;
     }       
     
+    public List<Despesa> listarDespesaFiltroUnidade(Integer codUnidade) {
+        
+        List<Despesa> despesas = new ArrayList<>();
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT *FROM despesa WHERE codunidade=?;";
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, codUnidade);
+            resultSet = pstm.executeQuery();
+            
+            while (resultSet.next()) { 
+                
+                Despesa objDespesa = new Despesa();
+                objDespesa.setCodDespesa(resultSet.getInt("coddespesa"));
+                objDespesa.setCodUnidade(resultSet.getInt("codunidade"));
+                objDespesa.setDescricao(resultSet.getString("descricao"));                                
+                objDespesa.setTipo(resultSet.getString("tipo"));
+                objDespesa.setValor(resultSet.getDouble("valor"));   
+                objDespesa.setVencimento(resultSet.getDate("vencimento")); 
+                objDespesa.setStatusPgto(resultSet.getBoolean("statuspgto"));                 
+                despesas.add(objDespesa);         
+            }
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco",
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return despesas;
+    }      
+    
+    public List<Despesa> listarDespesaVencidada() {
+        
+        List<Despesa> despesas = new ArrayList<>();
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT *FROM despesa WHERE vencimento < now() AND statuspgto=false;";
+            pstm = connection.prepareStatement(sql);
+            resultSet = pstm.executeQuery();
+            
+            while (resultSet.next()) { 
+                
+                Despesa objDespesa = new Despesa();
+                objDespesa.setCodDespesa(resultSet.getInt("coddespesa"));
+                objDespesa.setCodUnidade(resultSet.getInt("codunidade"));
+                objDespesa.setDescricao(resultSet.getString("descricao"));                                
+                objDespesa.setTipo(resultSet.getString("tipo"));
+                objDespesa.setValor(resultSet.getDouble("valor"));   
+                objDespesa.setVencimento(resultSet.getDate("vencimento")); 
+                objDespesa.setStatusPgto(resultSet.getBoolean("statuspgto"));                 
+                despesas.add(objDespesa);         
+            }
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco",
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return despesas;
+    }     
 }
+

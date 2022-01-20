@@ -61,8 +61,16 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabelInfo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDespesa = new javax.swing.JTable();
+        jPanelFiltros = new javax.swing.JPanel();
+        jPanelFiltroUnidade = new javax.swing.JPanel();
+        jLabelFiltroUnidade = new javax.swing.JLabel();
+        jTextFieldFiltroUnidade = new javax.swing.JTextField();
+        jButtonFiltrarUnidade = new javax.swing.JButton();
+        jButtonFitroDespesasVencidas = new javax.swing.JButton();
+        jButtonLimparFiltros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanelBase.setBorder(javax.swing.BorderFactory.createTitledBorder("Criação / Edição de Despesas"));
 
@@ -100,6 +108,11 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/home.png"))); // NOI18N
         jButtonHome.setText("Home");
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonHomeActionPerformed(evt);
+            }
+        });
 
         jLabelCodDespesa.setText("Cod Despesa");
 
@@ -147,95 +160,183 @@ public class TelaDespesa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableDespesa);
 
+        jPanelFiltros.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtros"));
+
+        jPanelFiltroUnidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Filtrar por Unidade"));
+
+        jLabelFiltroUnidade.setText("Unidade");
+
+        jTextFieldFiltroUnidade.setText("1");
+
+        jButtonFiltrarUnidade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/filtro.png"))); // NOI18N
+        jButtonFiltrarUnidade.setText("Filtrar");
+        jButtonFiltrarUnidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFiltrarUnidadeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelFiltroUnidadeLayout = new javax.swing.GroupLayout(jPanelFiltroUnidade);
+        jPanelFiltroUnidade.setLayout(jPanelFiltroUnidadeLayout);
+        jPanelFiltroUnidadeLayout.setHorizontalGroup(
+            jPanelFiltroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFiltroUnidadeLayout.createSequentialGroup()
+                .addGroup(jPanelFiltroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFiltroUnidadeLayout.createSequentialGroup()
+                        .addComponent(jLabelFiltroUnidade)
+                        .addGap(0, 15, Short.MAX_VALUE))
+                    .addComponent(jTextFieldFiltroUnidade))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonFiltrarUnidade)
+                .addContainerGap())
+        );
+        jPanelFiltroUnidadeLayout.setVerticalGroup(
+            jPanelFiltroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFiltroUnidadeLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addGroup(jPanelFiltroUnidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonFiltrarUnidade)
+                    .addGroup(jPanelFiltroUnidadeLayout.createSequentialGroup()
+                        .addComponent(jLabelFiltroUnidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldFiltroUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButtonFitroDespesasVencidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Despesas.png"))); // NOI18N
+        jButtonFitroDespesasVencidas.setText("Despesas Vencidas");
+        jButtonFitroDespesasVencidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFitroDespesasVencidasActionPerformed(evt);
+            }
+        });
+
+        jButtonLimparFiltros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/limparFiltro.png"))); // NOI18N
+        jButtonLimparFiltros.setText("Limpar Filtros");
+        jButtonLimparFiltros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimparFiltrosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelFiltrosLayout = new javax.swing.GroupLayout(jPanelFiltros);
+        jPanelFiltros.setLayout(jPanelFiltrosLayout);
+        jPanelFiltrosLayout.setHorizontalGroup(
+            jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelFiltroUnidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonFitroDespesasVencidas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButtonLimparFiltros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanelFiltrosLayout.setVerticalGroup(
+            jPanelFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFiltrosLayout.createSequentialGroup()
+                .addComponent(jPanelFiltroUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonFitroDespesasVencidas, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonLimparFiltros)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanelBaseLayout = new javax.swing.GroupLayout(jPanelBase);
         jPanelBase.setLayout(jPanelBaseLayout);
         jPanelBaseLayout.setHorizontalGroup(
             jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(jPanelBaseLayout.createSequentialGroup()
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelInfo)
+                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBaseLayout.createSequentialGroup()
                         .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanelBaseLayout.createSequentialGroup()
-                                    .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelCodDespesa, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldCodDespesa, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelCodUnidade)
-                                        .addComponent(jTextFieldCodUnidade)))
-                                .addComponent(jTextFieldDescricao))
-                            .addComponent(jLabelDescricao))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelVencimento)
-                            .addComponent(jTextFieldVencimento)
-                            .addComponent(jLabelStatus)
-                            .addComponent(jTextFieldStatus))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelBaseLayout.createSequentialGroup()
-                                .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldValor))
                             .addGroup(jPanelBaseLayout.createSequentialGroup()
                                 .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonExcluir)
-                                    .addComponent(jLabelTipo))
+                                    .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanelBaseLayout.createSequentialGroup()
+                                            .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabelCodDespesa, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextFieldCodDespesa, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jButtonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabelCodUnidade)
+                                                .addComponent(jTextFieldCodUnidade)))
+                                        .addComponent(jTextFieldDescricao))
+                                    .addComponent(jLabelDescricao))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelVencimento)
+                                    .addComponent(jTextFieldVencimento)
+                                    .addComponent(jLabelStatus)
+                                    .addComponent(jTextFieldStatus))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanelBaseLayout.createSequentialGroup()
+                                        .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextFieldValor))
+                                    .addGroup(jPanelBaseLayout.createSequentialGroup()
+                                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonExcluir)
+                                            .addComponent(jLabelTipo))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jLabelInfo))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
         jPanelBaseLayout.setVerticalGroup(
             jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBaseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonNovo)
-                    .addComponent(jButtonSalvar)
-                    .addComponent(jButtonEditar)
-                    .addComponent(jButtonExcluir)
-                    .addComponent(jButtonHome))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCodDespesa)
-                    .addComponent(jLabelCodUnidade)
-                    .addComponent(jLabelVencimento)
-                    .addComponent(jLabelTipo)
-                    .addComponent(jLabelValor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldCodDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCodUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDescricao)
-                    .addComponent(jLabelStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelInfo)
+                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelBaseLayout.createSequentialGroup()
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonNovo)
+                            .addComponent(jButtonSalvar)
+                            .addComponent(jButtonEditar)
+                            .addComponent(jButtonExcluir)
+                            .addComponent(jButtonHome))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCodDespesa)
+                            .addComponent(jLabelCodUnidade)
+                            .addComponent(jLabelVencimento)
+                            .addComponent(jLabelTipo)
+                            .addComponent(jLabelValor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldCodDespesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldCodUnidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDescricao)
+                            .addComponent(jLabelStatus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelInfo))
+                    .addComponent(jPanelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelBase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,6 +344,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
@@ -261,8 +363,15 @@ public class TelaDespesa extends javax.swing.JFrame {
         despesas.setCodUnidade(Integer.parseInt(jTextFieldCodUnidade.getText()));
         despesas.setDescricao(jTextFieldDescricao.getText()); 
         despesas.setTipo(jTextFieldTipo.getText()); 
-        despesas.setValor(Double.parseDouble(jTextFieldValor.getText()));        
-        despesas.setVencimento(Date.valueOf(jTextFieldVencimento.getText()));
+        despesas.setValor(Double.parseDouble(jTextFieldValor.getText()));   
+        try{
+            despesas.setVencimento(Date.valueOf(jTextFieldVencimento.getText()));
+        }catch(Exception e){            
+            JOptionPane.showMessageDialog(null,"Dada Formado Invalido: "
+                    + "Digitar no formado yyyy/MM/dd",
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+            return;
+        }
         despesas.setStatusPgto(Boolean.valueOf(jTextFieldStatus.getText()));
 
         daoDespesas.cadastrarDespesa(despesas);
@@ -324,6 +433,34 @@ public class TelaDespesa extends javax.swing.JFrame {
         jButtonExcluir.setEnabled(true);
         HabilitarJTextField();
     }//GEN-LAST:event_jTableDespesaMouseClicked
+
+    private void jButtonFiltrarUnidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarUnidadeActionPerformed
+        
+        CarregarTabelaFiltroUnidade();   
+    }//GEN-LAST:event_jButtonFiltrarUnidadeActionPerformed
+
+    private void jButtonLimparFiltrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparFiltrosActionPerformed
+      
+        CarregarTabela();
+    }//GEN-LAST:event_jButtonLimparFiltrosActionPerformed
+
+    private void jButtonFitroDespesasVencidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFitroDespesasVencidasActionPerformed
+
+        CarregarTabelaFiltroDespesaVencida();
+    }//GEN-LAST:event_jButtonFitroDespesasVencidasActionPerformed
+
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
+
+        try {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.setVisible(true);
+        } catch (Exception e) {
+             e.printStackTrace();
+        } 
+        finally{
+        dispose();
+        }                
+    }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void LimparjTextField(){
         jTextFieldCodDespesa.setText("");
@@ -409,6 +546,55 @@ public class TelaDespesa extends javax.swing.JFrame {
         }  
     }        
     
+    private void CarregarTabelaFiltroUnidade(){
+        
+        DefaultTableModel tabela = (DefaultTableModel) jTableDespesa.getModel();
+        tabela.setNumRows(0);
+      
+        DaoDespesa daoDespesas = new DaoDespesa();
+        
+        try {
+            for(Despesa d: daoDespesas.listarDespesaFiltroUnidade(Integer.parseInt(jTextFieldFiltroUnidade.getText()))){
+                tabela.addRow(new Object[]{
+                    d.getCodDespesa(),
+                    d.getCodUnidade(),                   
+                    d.getDescricao(),
+                    d.getTipo(),
+                    d.getValor(),
+                    d.getVencimento(),
+                    d.getStatusPgto()
+                });
+            }                            
+        } catch (Exception erro) {            
+            JOptionPane.showMessageDialog(null,"Erro ao Carregar tabela",
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+    }  
+    
+    private void CarregarTabelaFiltroDespesaVencida(){
+        
+        DefaultTableModel tabela = (DefaultTableModel) jTableDespesa.getModel();
+        tabela.setNumRows(0);
+      
+        DaoDespesa daoDespesas = new DaoDespesa();
+        
+        try {
+            for(Despesa d: daoDespesas.listarDespesaVencidada()){
+                tabela.addRow(new Object[]{
+                    d.getCodDespesa(),
+                    d.getCodUnidade(),                   
+                    d.getDescricao(),
+                    d.getTipo(),
+                    d.getValor(),
+                    d.getVencimento(),
+                    d.getStatusPgto()
+                });
+            }                            
+        } catch (Exception erro) {            
+            JOptionPane.showMessageDialog(null,"Erro ao Carregar tabela",
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+    }
     
     /**
      * @param args the command line arguments
@@ -448,23 +634,30 @@ public class TelaDespesa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonFiltrarUnidade;
+    private javax.swing.JButton jButtonFitroDespesasVencidas;
     private javax.swing.JButton jButtonHome;
+    private javax.swing.JButton jButtonLimparFiltros;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabelCodDespesa;
     private javax.swing.JLabel jLabelCodUnidade;
     private javax.swing.JLabel jLabelDescricao;
+    private javax.swing.JLabel jLabelFiltroUnidade;
     private javax.swing.JLabel jLabelInfo;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelValor;
     private javax.swing.JLabel jLabelVencimento;
     private javax.swing.JPanel jPanelBase;
+    private javax.swing.JPanel jPanelFiltroUnidade;
+    private javax.swing.JPanel jPanelFiltros;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDespesa;
     private javax.swing.JTextField jTextFieldCodDespesa;
     private javax.swing.JTextField jTextFieldCodUnidade;
     private javax.swing.JTextField jTextFieldDescricao;
+    private javax.swing.JTextField jTextFieldFiltroUnidade;
     private javax.swing.JTextField jTextFieldStatus;
     private javax.swing.JTextField jTextFieldTipo;
     private javax.swing.JTextField jTextFieldValor;

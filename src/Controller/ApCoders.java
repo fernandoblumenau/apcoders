@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import View.TelaPrincipal;
 import java.sql.Connection;
 
 /**
@@ -16,6 +17,13 @@ public class ApCoders {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        try {
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
+            telaPrincipal.setVisible(true);
+        } catch (Exception e) {
+             e.printStackTrace();
+        }         
 
     }
     
