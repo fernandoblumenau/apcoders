@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class DaoInquilino {
     
@@ -148,5 +148,27 @@ public class DaoInquilino {
         }
         return inquilinos;
     }    
-    
+   
+    public Integer totalInquilinos() {
+        Integer inquilinos=0;
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT COUNT(codinquilino)soma FROM inquilino;";
+            pstm = connection.prepareStatement(sql);    
+            resultSet = pstm.executeQuery();
+            resultSet.next();
+            inquilinos=resultSet.getInt("soma");
+
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco"+erro,
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return inquilinos;        
+    }                 
 }

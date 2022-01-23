@@ -32,7 +32,8 @@ public class Conexao {
             System.out.println("Erro ao conectar com o banco de dados");
         }
         return con;   
-    }      
+    }  
+    
     public static void closeConnection(Connection connection){
         try {
            if (connection!=null) connection.close();

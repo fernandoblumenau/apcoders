@@ -5,13 +5,15 @@
 package View;
 
 import Controller.DaoDespesa;
+import Controller.DaoInquilino;
+import Controller.DaoUnidade;
 import Model.Despesa;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -21,6 +23,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         CarregarTabela();
+                
+        DaoDespesa despesas = new DaoDespesa();
+        Double totalDespesaVencidas;
+        totalDespesaVencidas=despesas.DespesaAtivasVencidas();
+        jLabelTotalDespesasVencidasDado.setText(totalDespesaVencidas.toString());   
+        
+        DaoDespesa despesasAtivas = new DaoDespesa();
+        Double totalDespesa;
+        totalDespesa=despesasAtivas.DespesaAtivas();
+        jLabelDespesasAtivasDado.setText(totalDespesa.toString());
+        
+        DaoInquilino totalInquilinos = new DaoInquilino();
+        Integer inquilinos;
+        inquilinos=totalInquilinos.totalInquilinos();
+        jLabelTotalInquilinoDado.setText(inquilinos.toString());   
+        
+        DaoUnidade totalUnidades = new DaoUnidade();
+        Integer unidades;
+        unidades=totalUnidades.totalUnidades();
+        jLabelTotalUnidadesDado.setText(unidades.toString());        
+            
     }
 
     /**

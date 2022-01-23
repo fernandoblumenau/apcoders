@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ferna
+ * @author Classe Model para Entidade Inquilino
  */
 public class TelaDespesa extends javax.swing.JFrame {
 
@@ -26,7 +26,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         CarregarTabela();
         DesabilitarJbuttom();
         DesabilitarJTextField();
-        LimparjTextField();        
+        LimparjTextField();          
+        
     }
 
     /**
@@ -51,6 +52,7 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabelValor = new javax.swing.JLabel();
         jLabelDescricao = new javax.swing.JLabel();
         jLabelStatus = new javax.swing.JLabel();
+        jLabelinfoStatus = new javax.swing.JLabel();
         jTextFieldCodDespesa = new javax.swing.JTextField();
         jTextFieldCodUnidade = new javax.swing.JTextField();
         jTextFieldVencimento = new javax.swing.JTextField();
@@ -118,7 +120,7 @@ public class TelaDespesa extends javax.swing.JFrame {
 
         jLabelCodUnidade.setText("Cod Unidade");
 
-        jLabelVencimento.setText("Vencimento");
+        jLabelVencimento.setText("Vencimento (yyyy-DD-mm)");
 
         jLabelTipo.setText("Tipo");
 
@@ -127,6 +129,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabelDescricao.setText("Descrição");
 
         jLabelStatus.setText("Status");
+
+        jLabelinfoStatus.setText("True para Pago / False para Devendo");
 
         jTextFieldCodDespesa.setText("jTextField1");
 
@@ -247,6 +251,7 @@ public class TelaDespesa extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBaseLayout.createSequentialGroup()
                         .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelInfo)
                             .addGroup(jPanelBaseLayout.createSequentialGroup()
                                 .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -263,30 +268,32 @@ public class TelaDespesa extends javax.swing.JFrame {
                                         .addComponent(jTextFieldDescricao))
                                     .addComponent(jLabelDescricao))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelVencimento)
-                                    .addComponent(jTextFieldVencimento)
-                                    .addComponent(jLabelStatus)
-                                    .addComponent(jTextFieldStatus))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelinfoStatus)
                                     .addGroup(jPanelBaseLayout.createSequentialGroup()
-                                        .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldValor))
-                                    .addGroup(jPanelBaseLayout.createSequentialGroup()
-                                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButtonExcluir)
-                                            .addComponent(jLabelTipo))
+                                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jButtonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelVencimento)
+                                            .addComponent(jTextFieldVencimento)
+                                            .addComponent(jLabelStatus)
+                                            .addComponent(jTextFieldStatus))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabelValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                            .addComponent(jLabelInfo))
+                                            .addGroup(jPanelBaseLayout.createSequentialGroup()
+                                                .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextFieldValor))
+                                            .addGroup(jPanelBaseLayout.createSequentialGroup()
+                                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jButtonExcluir)
+                                                    .addComponent(jLabelTipo))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jButtonHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabelValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
                         .addGap(18, 18, 18)
                         .addComponent(jPanelFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelBaseLayout.setVerticalGroup(
             jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,11 +321,13 @@ public class TelaDespesa extends javax.swing.JFrame {
                             .addComponent(jTextFieldVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelDescricao)
-                            .addComponent(jLabelStatus))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDescricao)
+                            .addComponent(jLabelStatus, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabelinfoStatus)
+                        .addGap(3, 3, 3)
                         .addGroup(jPanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -500,7 +509,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabelStatus.setEnabled(false);
         jLabelTipo.setEnabled(false);
         jLabelValor.setEnabled(false);
-        jLabelVencimento.setEnabled(false);        
+        jLabelVencimento.setEnabled(false); 
+        jLabelinfoStatus.setEnabled(false);
     }
         
     private void HabilitarJTextField(){
@@ -517,7 +527,8 @@ public class TelaDespesa extends javax.swing.JFrame {
         jLabelStatus.setEnabled(true);
         jLabelTipo.setEnabled(true);
         jLabelValor.setEnabled(true);
-        jLabelVencimento.setEnabled(true);        
+        jLabelVencimento.setEnabled(true);
+        jLabelinfoStatus.setEnabled(true);        
         
     }
     
@@ -649,6 +660,7 @@ public class TelaDespesa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTipo;
     private javax.swing.JLabel jLabelValor;
     private javax.swing.JLabel jLabelVencimento;
+    private javax.swing.JLabel jLabelinfoStatus;
     private javax.swing.JPanel jPanelBase;
     private javax.swing.JPanel jPanelFiltroUnidade;
     private javax.swing.JPanel jPanelFiltros;

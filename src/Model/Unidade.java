@@ -6,7 +6,8 @@ package Model;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
+ * Classe Model para Entidade Unidade
  */
 public class Unidade {
     

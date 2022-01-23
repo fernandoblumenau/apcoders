@@ -4,18 +4,23 @@
  */
 package View;
 
+import Controller.Conexao;
 import Controller.DaoInquilino;
 import Controller.DaoUnidade;
 import Model.Inquilino;
 import Model.Unidade;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class TelaInquilino extends javax.swing.JFrame {
 
@@ -114,7 +119,7 @@ public class TelaInquilino extends javax.swing.JFrame {
 
         jLabelNome.setText("Nome");
 
-        jLabelNascimento.setText("Nascimento");
+        jLabelNascimento.setText("Nascimento (yyyy-MM-dd)");
 
         jLabelSexo.setText("Sexo");
 
@@ -444,7 +449,7 @@ public class TelaInquilino extends javax.swing.JFrame {
         }  
     }     
     
-    
+
     
     
     /**

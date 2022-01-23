@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class DaoUnidade {
     
@@ -131,4 +131,26 @@ public class DaoUnidade {
         return unidades;
     }
     
+    public Integer totalUnidades() {
+        Integer unidades=0;
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT COUNT(codunidade)soma FROM unidade;";
+            pstm = connection.prepareStatement(sql);    
+            resultSet = pstm.executeQuery();
+            resultSet.next();
+            unidades=resultSet.getInt("soma");
+
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco"+erro,
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return unidades;        
+    }          
 }

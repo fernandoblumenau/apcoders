@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class DaoDespesa {
     
@@ -214,6 +214,52 @@ public class DaoDespesa {
             Conexao.closeConnection(connection, pstm, resultSet);
         }
         return despesas;
-    }     
+    }   
+    
+    public Double DespesaAtivasVencidas() {
+        Double despesa=0d;
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT SUM(valor)soma FROM despesa WHERE vencimento < now() AND statuspgto=false;";
+            pstm = connection.prepareStatement(sql);    
+            resultSet = pstm.executeQuery();
+            resultSet.next();
+            despesa=resultSet.getDouble("soma");
+
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco"+erro,
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return despesa;        
+    }    
+  
+    public Double DespesaAtivas() {
+        Double despesa=0d;
+        Connection  connection = Conexao.conectar();
+        PreparedStatement  pstm =null;
+        ResultSet resultSet = null;
+        
+        try {
+            String sql = "SELECT SUM(valor)soma FROM despesa WHERE statuspgto=false;";
+            pstm = connection.prepareStatement(sql);    
+            resultSet = pstm.executeQuery();
+            resultSet.next();
+            despesa=resultSet.getDouble("soma");
+
+        } catch (SQLException erro) {            
+            JOptionPane.showMessageDialog(null,"Erro de Leitura do Banco"+erro,
+                    "Erro",JOptionPane.ERROR_MESSAGE); 
+        }  
+        finally{
+            Conexao.closeConnection(connection, pstm, resultSet);
+        }
+        return despesa;        
+    } 
 }
 

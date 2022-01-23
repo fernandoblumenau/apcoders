@@ -9,7 +9,7 @@ import java.sql.Connection;
 
 /**
  *
- * @author ferna
+ * @author Fernando Marcos Rodrigues
  */
 public class ApCoders {
 
@@ -24,7 +24,5 @@ public class ApCoders {
         } catch (Exception e) {
              e.printStackTrace();
         }         
-
-    }
-    
+    }    
 }
